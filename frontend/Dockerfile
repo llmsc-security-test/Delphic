@@ -34,4 +34,10 @@ COPY ./.env .
 RUN chmod +x env.sh
 
 # Let's start our server
-CMD ["/bin/sh", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+
+# --- Auto-Generated Entrypoint Configuration ---
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+RUN mkdir -p /var/log && touch /var/log/app.log
+EXPOSE 3000
+ENTRYPOINT ["/entrypoint.sh"]
